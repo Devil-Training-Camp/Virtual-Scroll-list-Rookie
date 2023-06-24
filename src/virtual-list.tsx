@@ -19,7 +19,7 @@ import { EVENT_TYPE, SLOT_TYPE, DataSource, Range, SCROLL_DIRECTION } from './ty
 //   dataComponent?: PropType<Component | ((props: any) => JSX.Element) | null>;
 //   direction: keyof typeof SCROLL_DIRECTION;
 //   dataSources: any[];
-//   keeps: any[];
+//   keeps: number;
 //   start: number;
 //   offset: number;
 // }
@@ -35,7 +35,6 @@ export default defineComponent({
     const root = ref<HTMLElement | null>();
     const shepherd = ref<HTMLDivElement | null>(null);
     let virtual: Virtual;
-
     /**
      * watch
      */
@@ -201,6 +200,7 @@ export default defineComponent({
         dataComponent,
         itemScopedSlots,
       } = props;
+      console.log(dataComponent, 'dataComponent')
       for (let index = start; index <= end; index++) {
         const dataSource = dataSources[index] as DataSource;
         if (dataSource) {

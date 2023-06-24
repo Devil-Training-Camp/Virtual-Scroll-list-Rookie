@@ -3,7 +3,7 @@ import { reactive } from 'vue';
 import VirtualList from '../../src/virtual-list';
 import HelloWorld from './components/HelloWorld.vue';
 const dataSources = reactive<{ id: number; value: number }[]>([]);
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 50; i++) {
   dataSources.push({
     id: Math.random(),
     value: i,
@@ -20,15 +20,20 @@ for (let i = 0; i < 10; i++) {
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
     <VirtualList
+      class="scroll"
       :data-sources="dataSources"
       data-key="id"
       :data-component="HelloWorld"
+      :keeps="20"
     />
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
+.scroll {
+  height: 400px;
+  overflow-y: auto;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
